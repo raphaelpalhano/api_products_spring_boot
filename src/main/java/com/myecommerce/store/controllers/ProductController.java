@@ -3,6 +3,8 @@ package com.myecommerce.store.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -12,6 +14,10 @@ import com.myecommerce.store.models.ProductModel;
 import com.myecommerce.store.repositories.ProductRepository;
 
 import jakarta.validation.Valid;
+
+import java.util.List;
+import java.util.UUID;
+
 import org.springframework.beans.BeanUtils;
 
 /*
@@ -37,6 +43,18 @@ public class ProductController {
     return ResponseEntity.status(HttpStatus.CREATED).body(productRepository.save(productModel));
   }
 
+
+  @GetMapping("/products/{id}")
+  public ResponseEntity<ProductModel> getProduct(@PathVariable UUID id) {
+    return ResponseEntity.status(HttpStatus.OK).body(productRepository.findById(id).get());
+
+  }
+
+    @GetMapping("/products")
+  public ResponseEntity<List<ProductModel>> listProduct() {
+    return ResponseEntity.status(HttpStatus.OK).body(productRepository.findAll());
+
+  }
 
 
 }
