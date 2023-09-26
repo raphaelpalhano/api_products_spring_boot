@@ -15,3 +15,10 @@ models/
 repositories/
 
 Application
+
+
+
+
+## Exceptions
+
+https://dev.to/ledsonsilva/tratamento-de-erros-personalizados-para-apis-rest-com-spring-boot-4dpd
